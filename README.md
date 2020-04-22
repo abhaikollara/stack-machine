@@ -10,3 +10,4 @@ m = Machine()
 m.load_instructions(your_instructions)
 m.execute()
 ```
+See example.py
