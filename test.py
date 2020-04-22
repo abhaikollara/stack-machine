@@ -13,7 +13,8 @@ instructions = [
     Op.POPR,
     Op.DONE]
 
-m = Machine(instructions)
+m = Machine()
+m.load_instructions(instructions)
 m.execute()
 
 print(m.acc)
