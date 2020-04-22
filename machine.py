@@ -2,17 +2,17 @@ from enum import Enum
 
 
 class OpCode(Enum):
-    INC = 1
-    DEC = 2
-    INCI = 3
-    DECI = 4
-    PUSHI = 5
-    POPR = 6
-    ADD = 7
-    SUB = 8
-    DONE = 9
-
-# Errors
+    INC     = 1
+    DEC     = 2
+    INCI    = 3
+    DECI    = 4
+    PUSHI   = 5
+    POPR    = 6
+    ADD     = 7
+    SUB     = 8
+    MUL     = 9
+    DIV     = 10
+    DONE    = 11
 
 
 class StackMachineError(Exception):
@@ -70,6 +70,16 @@ class Machine:
             arg1 = self.pop()
             arg2 = self.pop()
             self.push(arg1 - arg2)
+        elif op == OpCode.MUL:
+            arg1 = self.pop()
+            arg2 = self.pop()
+            self.push(arg1 * arg2)
+        elif op == OpCode.DIV:
+            arg1 = self.pop()
+            arg2 = self.pop()
+            if arg2 == 0:
+                raise StackMachineError(f"Division by zero")
+            self.push(arg1 // arg2)
         else:
             raise StackMachineError(f"Invalid Opcode: {op}")
 
